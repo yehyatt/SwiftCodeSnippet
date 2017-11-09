@@ -1,6 +1,9 @@
 ///////////////Class1 (Receiver)//////////////
 1. extend the protocol
 2. add func inside of the class 
+func FunctionFromClass1()
+{
+}
 ///////////////Class1 ////////////////////////
 
 
