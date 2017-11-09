@@ -1,0 +1,4 @@
+1. Select Button
+2. Identity inspector
+3. User defined runtime attributes
+4. add this  ---->      Keypath = Layer.cornerRadius  , type = integer , value = 10
