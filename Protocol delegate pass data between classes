@@ -1,0 +1,39 @@
+// 1. Define your protocol in the same class file as delegate property.
+protocol TabViewProtocol: class {
+    func changeTab() 
+}
+
+// 2. Define your delegate property
+class ViewController: NSViewController {
+    // delegate
+    weak var delegateCustom : TabViewProtocol?
+
+    override func viewDidLoad() {
+        // It should be nil as you have not set the delegate yet.
+        print(delegateCustom) // outputs "nil"
+    }
+
+    func buttonClickFunction() {
+        print(delegateCustom) // outputs "nil"
+        delegateCustom?.changeTab() // doesn't work
+    }
+}
+
+// 3. In the class that will use the protocol add it to the class definition statement
+
+class TabView: NSTabViewController, TabViewProtocol {
+
+    let myVC = ViewController()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        myVC.delegateCustom = self
+
+        // Should output a value now
+        print(myVC.delegateCustom) // outputs "self"
+    }
+
+    func changeTab() {
+        print("test succeed")
+    }
+}
