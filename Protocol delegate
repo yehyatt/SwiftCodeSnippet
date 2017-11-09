@@ -1,0 +1,24 @@
+///////////////Class1 (Receiver)//////////////
+1. extend the protocol
+2. add func inside of the class 
+///////////////Class1 ////////////////////////
+
+
+///////////////Class2 (Sender)//////////////
+{.
+.
+.
+var myProtocol :namy? = nil
+.
+.
+.
+trigger : self.myProtocol.FunctionFromClass1()
+///////////////Class2 ///////////////////////
+
+
+///////////////Protocol//////////////
+Protocol namey
+{
+    func FunctionFromClass1()
+}
+
