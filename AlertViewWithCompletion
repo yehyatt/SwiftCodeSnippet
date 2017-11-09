@@ -1,0 +1,5 @@
+ let alertView = UIAlertController(title: "No notes found", message: "This student have no notes", preferredStyle: UIAlertControllerStyle.alert)
+                    alertView.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                        self.navigationController?.popViewController(animated: true)
+                    }))
+                    self.present(alertView, animated: true, completion: nil)
