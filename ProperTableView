@@ -1,0 +1,63 @@
+/////////////////////////////In the main class /////////////////////////////////////////////////////////////////////
+    
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NotesTableCell", for: indexPath) as! NotesTableCell
+        let Noteobject = self.notes[indexPath.row] as NoteDetailsModel        
+        cell.MoreButton.tag = indexPath.row
+        cell.NoteTitleLabel.text = Noteobject.title as? String
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        let targetedController = self.storyboard?.instantiateViewController(withIdentifier: "showNote") as! showNote
+        let noteObject = self.notes[indexPath.row]
+        targetedController.pageTitle = String(describing: self.pageTitle)
+        targetedController.noteId = String(describing: noteObject.teacherNoteId)
+        SHARED_NAVIGATION_CONTROLLER.pushViewController(targetedController, animated: true)
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return 84;
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int 
+    {    
+        return self.notes.count;
+    }
+
+    public func ButtonSelected()
+    {
+        
+    }
+   
+/////////////////////////////End the main class /////////////////////////////////////////////////////////////////////
+
+class NotesTableCell: UITableViewCell
+{
+    @IBOutlet weak var NoteTitleLabel: UILabel!
+    
+    @IBOutlet weak var NoteDateLabel: UILabel!
+    
+    @IBOutlet weak var NoteSnippetLabel: UILabel!
+    
+    @IBOutlet weak var MoreButton: UIButton!
+    
+    @IBAction func MoreButtonClicked(_ sender: UIButton)
+    {
+        let buttonRow = sender.tag
+        MainClass().ButtonSelected()
+        print(buttonRow)
+    }
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?)
+    {
+        super.init(style: style, reuseIdentifier: reuseIdentifier);
+    }
+    required init?(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder);
+    }
+}
