@@ -1,0 +1,2 @@
+Limit decimal to first two fractions
+ let summativeScoreString = String(format: "%.2f", checkedSummativeScore)
