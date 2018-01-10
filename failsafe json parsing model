@@ -1,0 +1,65 @@
+///////////////////
+called by ....
+
+ func processTest(response: Any) -> Void
+    {
+        let json = response
+        
+        do
+        {
+        let myStruct = try JSONDecoder().decode(StudentDetailsModelTest.self, from: json as! Data) // Decoding our data
+        print("horray!! " + "\(myStruct)")
+        }
+        catch let error1 as NSError
+        {
+            print(error1)
+        }
+    }
+///////////////////
+
+
+
+import Foundation
+struct StudentDetailsModelTest
+{
+    let fullName: String
+    let imagePath: String
+    let id: Int
+    let formativeStudentMark: Double
+    
+    init(fullName: String, imagePath: String, id: Int, formativeStudentMark: Double)
+    {
+        self.fullName = fullName
+        self.imagePath = imagePath
+        self.id = id
+        self.formativeStudentMark = formativeStudentMark
+    }
+}
+
+extension StudentDetailsModelTest: Decodable
+{
+    enum MyStructKeys: String, CodingKey
+    {
+        case fullName = "fullName"
+        case imagePath = "imagePath"
+        case id = "id"
+        case formativeStudentMark = "formativeStudentMark"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: MyStructKeys.self)
+        let fullName: String = (try container.decodeIfPresent(String.self, forKey: .fullName))!
+        let imagePath: String = try container.decode(String.self, forKey: .imagePath)
+        let id: Int = (try container.decodeIfPresent(Int.self, forKey: .id) ?? 0)! 
+        var formativeStudentMark = 0.0
+        do
+        {
+            formativeStudentMark = (try container.decodeIfPresent(Double.self, forKey: .formativeStudentMark) ?? 0.0)!
+        }
+        catch
+        {
+            print(error)
+        }
+        self.init(fullName: fullName, imagePath: imagePath, id: id, formativeStudentMark:formativeStudentMark)
+    }
+}
