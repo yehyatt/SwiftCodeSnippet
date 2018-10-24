@@ -1,0 +1,15 @@
+var storyboard :UIStoryboard
+            if THE_DEVICE_LANGUAGE_IS_ARABIC
+            {
+                storyboard = UIStoryboard(name: "TeacherCoursesAr", bundle: nil)
+            }
+            else
+            {
+                storyboard = UIStoryboard(name: "TeacherCourses", bundle: nil)
+            }
+            
+            
+            appConstants.sharedInstance.bottomBarIndex = 1
+            
+            let targetedController = storyboard.instantiateViewController(withIdentifier: "TeacherCoursesController") as! TeacherCoursesController
+            self.navigationController?.pushViewController(targetedController, animated: true)
