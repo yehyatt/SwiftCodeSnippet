@@ -1,0 +1,6 @@
+let targetedController = self.storyboard?.instantiateViewController(withIdentifier: "QuizQuestions") as! QuizQuestions
+            targetedController.QuizId = "\(resultObjects.QuizId!)"
+            targetedController.NumberOfQuestions = QuizObject.QuestionCount!
+            targetedController.QuizEndTime = QuizEndTime
+            targetedController.QuizQuestionObject = resultObjects
+            self.navigationController?.pushViewController(targetedController, animated: true)
