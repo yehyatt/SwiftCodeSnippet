@@ -4,6 +4,10 @@
 func FunctionFromClass1()
 {
 }
+
+ let targetedController = self.storyboard?.instantiateViewController(withIdentifier: "AddressList") as! AddressList
+        targetedController.addressListProtocolDelegate = self
+        self.navigationController?.pushViewController(targetedController, animated: true)
 ///////////////Class1 ////////////////////////
 
 
@@ -18,9 +22,8 @@ var myProtocol :namy? = nil
 trigger : self.myProtocol.FunctionFromClass1()
 ///////////////Class2 ///////////////////////
 
-
 ///////////////Protocol//////////////
-Protocol namey
+protocol namey : class
 {
     func FunctionFromClass1()
 }
